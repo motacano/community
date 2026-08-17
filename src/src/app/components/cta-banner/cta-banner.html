@@ -1,0 +1,72 @@
+<section id="unete" class="cta-banner-section">
+  <div class="container">
+    <div class="cta-box glass-card">
+      <!-- Glow elements in background -->
+      <div class="cta-glow glow-gold"></div>
+      <div class="cta-glow glow-purple"></div>
+
+      <div class="cta-content">
+        <div class="cta-badge-wrapper">
+          <div class="badge-pill">
+            <span>🔥 ACCESO VIP ANTICIPADO</span>
+          </div>
+        </div>
+
+        <h2 class="cta-title">
+          ¿LISTO PARA QUE TUS TRACKS <br>
+          <span class="text-gold-gradient">SUENEN EN LOS MEJORES CLUBS?</span>
+        </h2>
+
+        <p class="cta-desc">
+          Únete a más de 18,500 DJs y productores hoy mismo. Recibe instantáneamente nuestro 
+          <strong>Pack de Bienvenida con 5 Sample Packs Exclusivos 24-bit + 50 Presets de Serum</strong>.
+        </p>
+
+        @if (!isSubmitted()) {
+          <form class="cta-form" (submit)="onSubmit($event)">
+            <div class="form-row">
+              <input type="email" 
+                     placeholder="Introduce tu email de productor..." 
+                     [value]="email()" 
+                     (input)="email.set($any($event.target).value)" 
+                     required 
+                     class="cta-input">
+
+              <select class="cta-select" [value]="genre()" (change)="genre.set($any($event.target).value)">
+                @for (g of genres; track g) {
+                  <option [value]="g">{{ g }}</option>
+                }
+              </select>
+
+              <button type="submit" class="btn btn-gold btn-cta">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Conseguir Pase VIP
+              </button>
+            </div>
+          </form>
+        } @else {
+          <div class="success-banner animate-fade-in">
+            <div class="success-icon">🎉</div>
+            <div class="success-text">
+              <h3 class="success-title">¡Bienvenido a COMMUNITY, Productor!</h3>
+              <p class="success-desc">
+                Hemos enviado tu pase de acceso y el enlace de descarga del 
+                <strong>Welcome Sample Vault (24-bit WAV & Serum Presets)</strong> a 
+                <span class="text-gold">{{ email() }}</span>.
+              </p>
+              <button class="btn btn-glass btn-sm" (click)="resetForm()">Registrar otro correo</button>
+            </div>
+          </div>
+        }
+
+        <div class="cta-guarantees">
+          <span class="guarantee-item">🔒 Sin tarjeta requerida</span>
+          <span class="guarantee-item">⚡ Acceso instantáneo al Discord VIP</span>
+          <span class="guarantee-item">🎧 100% Royalty Free</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

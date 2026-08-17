@@ -1,0 +1,121 @@
+<section class="hero-section">
+  <!-- Ambient glow spheres in background -->
+  <div class="ambient-glow glow-gold"></div>
+  <div class="ambient-glow glow-purple"></div>
+  <div class="ambient-glow glow-cyan"></div>
+
+  <div class="container hero-container">
+    <!-- Top Badge -->
+    <div class="hero-badge-wrapper">
+      <div class="badge-pill">
+        <span class="pulse-dot"></span>
+        <span>🎛️ La Red Global de Productores & DJs de Música Electrónica</span>
+      </div>
+    </div>
+
+    <!-- Main Headline & Subheadline -->
+    <h1 class="hero-title">
+      LLEVA TUS TRACKS Y SETS AL <br>
+      <span class="text-gold-gradient">ESCENARIO GLOBAL</span>
+    </h1>
+
+    <p class="hero-description">
+      El santuario donde los mejores productores, DJs y sound designers se conectan. 
+      Intercambia stems a 24-bit, recibe <strong>feedback real de A&Rs de sellos discográficos</strong>, 
+      descarga sample packs exclusivos y perfecciona tu sonido con masterclasses de élite.
+    </p>
+
+    <!-- Hero CTA Buttons -->
+    <div class="hero-cta-group">
+      <a href="#unete" class="btn btn-gold btn-hero">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Unirse a la Comunidad (Pase VIP)
+      </a>
+
+      <a href="#experiencia" class="btn btn-glass btn-hero">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+        Probar Sintetizador Interactivo
+      </a>
+    </div>
+
+    <!-- Hero Centerpiece Showcase: Massive Glowing Logo with Floating DJ Cards -->
+    <div class="hero-visual-centerpiece">
+      <!-- Equalizer Visualizer Background -->
+      <div class="equalizer-backdrop">
+        @for (bar of equalizerBars; track $index) {
+          <div class="eq-bar" 
+               [style.animationDelay]="bar.delay" 
+               [style.animationDuration]="bar.duration"
+               [style.--target-height]="bar.maxHeight"></div>
+        }
+      </div>
+
+      <!-- Main Glowing Emblem -->
+      <div class="emblem-wrapper animate-float">
+        <div class="emblem-aura"></div>
+        <img src="assets/images/logo.png" alt="COMMUNITY DJs & Producers Emblem" class="emblem-image">
+      </div>
+
+      <!-- Floating Glass Cards around emblem -->
+      <div class="floating-card card-left">
+        <div class="card-icon-gold">🎚️</div>
+        <div class="card-content">
+          <span class="card-tag">A&R DEMO DROP</span>
+          <span class="card-title">Melodic Techno Track</span>
+          <div class="card-rating">
+            <span class="status-dot green"></span> 96% Match con Armada / Afterlife
+          </div>
+        </div>
+      </div>
+
+      <div class="floating-card card-right">
+        <div class="card-icon-purple">⚡</div>
+        <div class="card-content">
+          <span class="card-tag">VAULT EXCLUSIVO</span>
+          <span class="card-title">Serum & Vital Presets</span>
+          <div class="card-stat">
+            <span class="text-gold">+120 presets analógicos listos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="floating-card card-bottom">
+        <div class="card-icon-cyan">🔴</div>
+        <div class="card-content">
+          <span class="card-tag">MASTERCLASS EN DIRECTO</span>
+          <span class="card-title">Técnicas de Mezcla & Punch en Kick/Bass</span>
+          <span class="card-author">Por Marcus Vance (Defected Resident)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust & Social Proof Bar -->
+    <div class="hero-social-proof">
+      <div class="proof-item">
+        <span class="proof-number text-gold-gradient">+18,500</span>
+        <span class="proof-label">DJs & Productores Activos</span>
+      </div>
+      <div class="proof-separator"></div>
+      <div class="proof-item">
+        <span class="proof-number text-purple-gradient">+45,000</span>
+        <span class="proof-label">Stems & Samples Compartidos</span>
+      </div>
+      <div class="proof-separator"></div>
+      <div class="proof-item">
+        <span class="proof-number text-gold-gradient">+340</span>
+        <span class="proof-label">Sellos & A&Rs Conectados</span>
+      </div>
+      <div class="proof-separator"></div>
+      <div class="proof-item">
+        <span class="proof-number text-cyan-gradient">99.4%</span>
+        <span class="proof-label">Valoración Positiva</span>
+      </div>
+    </div>
+  </div>
+</section>

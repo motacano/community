@@ -1,0 +1,184 @@
+<section id="comunidad-en-vivo" class="live-hub-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="badge-pill">
+        <span class="live-dot"></span>
+        <span>🔴 COMUNIDAD EN VIVO (24/7)</span>
+      </div>
+      <h2 class="section-title">
+        EL PULSO DE NUESTRA <span class="text-gold-gradient">RED GLOBAL</span>
+      </h2>
+      <p class="section-subtitle">
+        Interactúa con las últimas demos subidas para feedback, descarga presets para tus sintetizadores o reserva tu plaza en las próximas masterclasses con A&Rs.
+      </p>
+    </div>
+
+    <!-- Live Hub Container -->
+    <div class="hub-container glass-card">
+      <!-- Hub Tabs Header -->
+      <div class="hub-tabs">
+        <button class="tab-button" [class.active]="activeTab() === 'demos'" (click)="setActiveTab('demos')">
+          <span class="tab-icon">🎚️</span>
+          <span>Feedbacks & Demos</span>
+          <span class="tab-count">4 Nuevas</span>
+        </button>
+
+        <button class="tab-button" [class.active]="activeTab() === 'vault'" (click)="setActiveTab('vault')">
+          <span class="tab-icon">📦</span>
+          <span>Preset Vault</span>
+          <span class="tab-count">Serum & Vital</span>
+        </button>
+
+        <button class="tab-button" [class.active]="activeTab() === 'events'" (click)="setActiveTab('events')">
+          <span class="tab-icon">🎪</span>
+          <span>Masterclasses & A&R</span>
+          <span class="tab-count">3 Próximas</span>
+        </button>
+
+        <button class="tab-button" [class.active]="activeTab() === 'leaderboard'" (click)="setActiveTab('leaderboard')">
+          <span class="tab-icon">🏆</span>
+          <span>Top Productores</span>
+          <span class="tab-count">Ranking</span>
+        </button>
+      </div>
+
+      <!-- Tab Content: Demos -->
+      @if (activeTab() === 'demos') {
+        <div class="tab-panel animate-fade-in">
+          <div class="tracks-list">
+            @for (track of demoTracks(); track track.id) {
+              <div class="track-row glass-card" [class.playing]="track.isPlaying">
+                <button class="track-play-btn" (click)="toggleDemoPlay(track.id)">
+                  @if (track.isPlaying) {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="6" y="4" width="4" height="16"></rect>
+                      <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                  } @else {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                  }
+                </button>
+
+                <div class="track-info">
+                  <span class="track-name">{{ track.title }}</span>
+                  <span class="track-artist">por <strong>{{ track.artist }}</strong></span>
+                </div>
+
+                <div class="track-meta">
+                  <span class="meta-tag genre">{{ track.genre }}</span>
+                  <span class="meta-tag bpm">{{ track.bpm }} BPM</span>
+                  <span class="meta-tag key">{{ track.key }}</span>
+                  <span class="meta-tag daw">{{ track.daw }}</span>
+                </div>
+
+                <div class="track-actions">
+                  <div class="feedback-stats">
+                    <span class="feedback-icon">💬</span>
+                    <span>{{ track.feedbackCount }} críticas</span>
+                  </div>
+                  <button class="btn btn-gold btn-sm">Dar Feedback</button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Tab Content: Vault -->
+      @if (activeTab() === 'vault') {
+        <div class="tab-panel animate-fade-in">
+          <div class="presets-grid">
+            @for (preset of presets(); track preset.id) {
+              <div class="preset-card glass-card">
+                <div class="preset-top">
+                  <span class="preset-badge">{{ preset.synth }}</span>
+                  <span class="preset-downloads">⬇️ {{ preset.downloads }} descargas</span>
+                </div>
+                <h4 class="preset-item-title">{{ preset.name }}</h4>
+                <div class="preset-footer">
+                  <span class="preset-author">Subido por @{{ preset.author }}</span>
+                  <button class="btn btn-glass btn-sm">Descargar Preset</button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Tab Content: Events -->
+      @if (activeTab() === 'events') {
+        <div class="tab-panel animate-fade-in">
+          <div class="events-list">
+            @for (event of events(); track event.id) {
+              <div class="event-card glass-card" [class.registered]="event.isRegistered">
+                <div class="event-date-box">
+                  <span class="event-badge-live">LIVE STREAM</span>
+                  <span class="event-time-tag">{{ event.time }}</span>
+                </div>
+
+                <div class="event-body">
+                  <h4 class="event-title">{{ event.title }}</h4>
+                  <p class="event-speaker">🎙️ Con <strong>{{ event.speaker }}</strong> ({{ event.role }})</p>
+                  <div class="event-meta-info">
+                    <span>🗓️ {{ event.date }}</span>
+                    <span>👥 {{ event.attendees }} Productores registrados</span>
+                  </div>
+                </div>
+
+                <div class="event-action">
+                  <button class="btn" 
+                          [class.btn-gold]="!event.isRegistered" 
+                          [class.btn-purple]="event.isRegistered"
+                          (click)="toggleRegisterEvent(event.id)">
+                    {{ event.isRegistered ? '✓ Plaza Reservada' : 'Reservar Mi Asiento' }}
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Tab Content: Leaderboard -->
+      @if (activeTab() === 'leaderboard') {
+        <div class="tab-panel animate-fade-in">
+          <div class="leaderboard-table">
+            @for (prod of topProducers(); track prod.rank) {
+              <div class="producer-row glass-card">
+                <div class="rank-badge" [class.gold-rank]="prod.rank === 1" [class.silver-rank]="prod.rank === 2" [class.bronze-rank]="prod.rank === 3">
+                  #{{ prod.rank }}
+                </div>
+
+                <div class="prod-profile">
+                  <div class="prod-avatar">
+                    <span class="avatar-letter">{{ prod.name[0] }}</span>
+                    @if (prod.isOnline) {
+                      <span class="online-indicator"></span>
+                    }
+                  </div>
+                  <div class="prod-names">
+                    <span class="prod-fullname">{{ prod.name }} <span class="verified-check">✓</span></span>
+                    <span class="prod-handle">{{ prod.handle }} • {{ prod.specialty }}</span>
+                  </div>
+                </div>
+
+                <div class="prod-stats">
+                  <div class="stat-col">
+                    <span class="stat-num">{{ prod.tracksSubmitted }}</span>
+                    <span class="stat-lbl">Demos</span>
+                  </div>
+                  <div class="stat-col">
+                    <span class="stat-num text-gold-gradient">{{ prod.reputationXp }}</span>
+                    <span class="stat-lbl">Reputación XP</span>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

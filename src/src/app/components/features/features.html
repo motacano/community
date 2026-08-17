@@ -1,0 +1,65 @@
+<section id="features" class="features-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="badge-pill">
+        <span>🚀 EL ARSENAL DEL PRODUCTOR</span>
+      </div>
+      <h2 class="section-title">
+        TODO LO QUE NECESITAS PARA <br>
+        <span class="text-gold-gradient">ROMPERLA EN LA INDUSTRIA</span>
+      </h2>
+      <p class="section-subtitle">
+        Diseñado exclusivamente por productores para productores. Olvídate de enviar emails que nadie responde: entra en contacto directo con la comunidad que mueve el sonido club.
+      </p>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="bento-grid">
+      @for (feat of features; track feat.title) {
+        <div class="bento-card glass-card" [ngClass]="feat.gridClass" [class.featured-card]="feat.featured">
+          <div class="bento-header">
+            <div class="feat-icon-box">{{ feat.icon }}</div>
+            <span class="feat-tag">{{ feat.tag }}</span>
+          </div>
+
+          <h3 class="feat-title">{{ feat.title }}</h3>
+          <p class="feat-desc">{{ feat.desc }}</p>
+
+          @if (feat.badges && feat.badges.length > 0) {
+            <div class="label-badges-container">
+              <span class="badges-title">Sellos Colaboradores:</span>
+              <div class="badges-list">
+                @for (b of feat.badges; track b) {
+                  <span class="label-badge">{{ b }}</span>
+                }
+              </div>
+            </div>
+          }
+
+          @if (feat.featured) {
+            <!-- Mock Interactive feedback waveform strip -->
+            <div class="feedback-preview-strip">
+              <div class="waveform-mock">
+                <div class="wf-bar" style="height: 40%"></div>
+                <div class="wf-bar" style="height: 70%"></div>
+                <div class="wf-bar active-drop" style="height: 95%">
+                  <span class="drop-marker">🔥 DROP 01:15</span>
+                </div>
+                <div class="wf-bar" style="height: 85%"></div>
+                <div class="wf-bar" style="height: 60%"></div>
+                <div class="wf-bar" style="height: 35%"></div>
+                <div class="wf-bar" style="height: 55%"></div>
+                <div class="wf-bar" style="height: 90%"></div>
+                <div class="wf-bar" style="height: 75%"></div>
+              </div>
+              <div class="comment-bubble">
+                <span class="comment-author">Lucas Rivera (A&R):</span>
+                <span class="comment-text">"La melodía del lead en 01:15 es oro puro. Corta 2dB en 350Hz para darle aire a la caja y está lista para el sello."</span>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

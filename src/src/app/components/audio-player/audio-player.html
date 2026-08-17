@@ -1,0 +1,142 @@
+<section id="experiencia" class="audio-lab-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="badge-pill badge-purple">
+        <span>⚡ AUDIO LAB INTERACTIVO</span>
+      </div>
+      <h2 class="section-title">
+        EXPERIMENTA EL <span class="text-gold-gradient">SONIDO COMMUNITY</span> EN VIVO
+      </h2>
+      <p class="section-subtitle">
+        Presiona Play para escuchar nuestro motor de audio Web sintetizado en tiempo real. 
+        Mutea pistas (Stems), ajusta el filtro de corte (Cutoff) o cambia los BPM.
+      </p>
+    </div>
+
+    <!-- Synth & Rack Container -->
+    <div class="rack-unit glass-card">
+      <div class="rack-header">
+        <div class="rack-screws">
+          <span class="screw"></span>
+          <span class="screw"></span>
+        </div>
+        <div class="rack-branding">
+          <img src="assets/images/logo.png" alt="Logo" class="rack-mini-logo">
+          <span class="rack-model">COMMUNITY SYNTH-RACK // MK-IV PRO</span>
+        </div>
+        <div class="rack-screws">
+          <span class="screw"></span>
+          <span class="screw"></span>
+        </div>
+      </div>
+
+      <!-- Presets Tabs -->
+      <div class="preset-selector">
+        @for (preset of presets; track preset.id) {
+          <button class="preset-btn" 
+                  [class.active]="currentPreset() === preset.id"
+                  (click)="setPreset(preset.id)">
+            <span class="preset-indicator"></span>
+            <span class="preset-title">{{ preset.name }}</span>
+          </button>
+        }
+      </div>
+
+      <!-- Canvas Spectrum Display -->
+      <div class="display-bay">
+        <div class="display-glow"></div>
+        <canvas #visualizerCanvas width="800" height="120" class="spectrum-canvas"></canvas>
+        <div class="display-overlay">
+          <div class="display-status">
+            <span class="rec-dot" [class.active]="isPlaying()"></span>
+            <span>{{ isPlaying() ? 'AUDIO ENGINE: ACTIVE [48kHz 24-BIT]' : 'AUDIO ENGINE: STANDBY (CLICK PLAY)' }}</span>
+          </div>
+          <div class="display-meta">
+            <span>{{ bpm() }} BPM</span>
+            <span>CUTOFF: {{ filterCutoff() }} Hz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control Deck -->
+      <div class="controls-deck">
+        <!-- Main Play/Pause Button -->
+        <div class="transport-control">
+          <button class="btn play-trigger-btn" [class.playing]="isPlaying()" (click)="togglePlay()">
+            @if (isPlaying()) {
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+              <span>DETENER AUDIO</span>
+            } @else {
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>REPRODUCIR GROOVE</span>
+            }
+          </button>
+        </div>
+
+        <!-- Stem Mute Toggles -->
+        <div class="stems-matrix">
+          <span class="matrix-title">STEMS & CANALES EN VIVO:</span>
+          <div class="stem-toggles">
+            <button class="stem-chip" [class.muted]="!kickEnabled()" (click)="toggleStem('kick')">
+              <span class="stem-led" [class.on]="kickEnabled()"></span>
+              <span class="stem-name">KICK DRUM</span>
+            </button>
+
+            <button class="stem-chip" [class.muted]="!bassEnabled()" (click)="toggleStem('bass')">
+              <span class="stem-led" [class.on]="bassEnabled()"></span>
+              <span class="stem-name">SUB BASSLINE</span>
+            </button>
+
+            <button class="stem-chip" [class.muted]="!synthEnabled()" (click)="toggleStem('synth')">
+              <span class="stem-led" [class.on]="synthEnabled()"></span>
+              <span class="stem-name">LEAD SYNTH</span>
+            </button>
+
+            <button class="stem-chip" [class.muted]="!hihatEnabled()" (click)="toggleStem('hihat')">
+              <span class="stem-led" [class.on]="hihatEnabled()"></span>
+              <span class="stem-name">HI-HATS 909</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sliders: Cutoff & BPM -->
+        <div class="knobs-row">
+          <div class="slider-box">
+            <div class="slider-header">
+              <label for="filter-slider">LOWPASS CUTOFF</label>
+              <span class="slider-val">{{ filterCutoff() }} Hz</span>
+            </div>
+            <input id="filter-slider" 
+                   type="range" 
+                   min="200" 
+                   max="8000" 
+                   step="50" 
+                   [value]="filterCutoff()" 
+                   (input)="onFilterChange($event)" 
+                   class="custom-slider">
+          </div>
+
+          <div class="slider-box">
+            <div class="slider-header">
+              <label for="bpm-slider">TEMPO (BPM)</label>
+              <span class="slider-val">{{ bpm() }}</span>
+            </div>
+            <input id="bpm-slider" 
+                   type="range" 
+                   min="115" 
+                   max="140" 
+                   step="1" 
+                   [value]="bpm()" 
+                   (input)="onBpmChange($event)" 
+                   class="custom-slider">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

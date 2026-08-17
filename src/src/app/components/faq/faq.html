@@ -1,0 +1,36 @@
+<section id="faq" class="faq-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="badge-pill">
+        <span>❓ PREGUNTAS FRECUENTES</span>
+      </div>
+      <h2 class="section-title">
+        RESOLVEMOS TUS <span class="text-gold-gradient">DUDAS ANTES DE ENTRAR</span>
+      </h2>
+      <p class="section-subtitle">
+        Todo lo que necesitas saber sobre el funcionamiento del club, las salas de feedback y las membresías.
+      </p>
+    </div>
+
+    <div class="faq-accordion">
+      @for (item of faqs; track item.id) {
+        <div class="faq-item glass-card" [class.open]="openItem() === item.id">
+          <button class="faq-question" (click)="toggleFaq(item.id)">
+            <span>{{ item.question }}</span>
+            <span class="faq-chevron">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+
+          @if (openItem() === item.id) {
+            <div class="faq-answer animate-fade-in">
+              <p>{{ item.answer }}</p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,3 +1,20 @@
+<div class="top-banner">
+  <div class="top-banner-track">
+    <span class="top-banner-item">🎵 <strong>La Red Global de Productores &amp; DJs de Música
+        Electrónica</strong></span>
+    <span class="top-banner-sep">•</span>
+    <span class="top-banner-item">🌍 Conectando talento con los mejores sellos &amp; festivales</span>
+    <span class="top-banner-sep">•</span>
+    <span class="top-banner-item">⚡ Audio Servers 24/7 Online &mdash; 48kHz Lossless</span>
+    <span class="top-banner-sep">•</span>
+    <span class="top-banner-item">🎵 <strong>La Red Global de Productores &amp; DJs de Música
+        Electrónica</strong></span>
+    <span class="top-banner-sep">•</span>
+    <span class="top-banner-item">🌍 Conectando talento con los mejores sellos &amp; festivales</span>
+    <span class="top-banner-sep">•</span>
+    <span class="top-banner-item">⚡ Audio Servers 24/7 Online &mdash; 48kHz Lossless</span>
+  </div>
+</div>
 <header class="navbar-wrapper" [class.scrolled]="isScrolled()">
   <div class="container navbar-container">
     <!-- Logo & Brand -->
@@ -13,19 +30,15 @@
 
     <!-- Desktop Navigation Links -->
     <nav class="nav-links desktop-only">
-      <a href="#experiencia" class="nav-item">Audio Lab</a>
-      <a href="#features" class="nav-item">Características</a>
-      <a href="#comunidad-en-vivo" class="nav-item">Comunidad en Vivo</a>
-      <a href="#masterclasses" class="nav-item">Masterclasses</a>
-      <a href="#membresias" class="nav-item">Membresías</a>
-      <a href="#faq" class="nav-item">FAQ</a>
+      <a href="#experiencia" class="nav-item">¿Quiénes somos?</a>
+      <a href="#features" class="nav-item">Events</a>
     </nav>
 
     <!-- Header Actions -->
     <div class="header-actions desktop-only">
-      <a href="#membresias" class="btn btn-glass btn-sm">Acceso VIP</a>
       <a href="#unete" class="btn btn-gold btn-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
         Entrar al Club
@@ -42,17 +55,13 @@
 
   <!-- Mobile Dropdown Menu -->
   @if (mobileMenuOpen()) {
-    <div class="mobile-menu-backdrop" (click)="closeMobileMenu()"></div>
-    <div class="mobile-menu-content animate-fade-in">
-      <a href="#experiencia" class="mobile-nav-link" (click)="closeMobileMenu()">Audio Lab</a>
-      <a href="#features" class="mobile-nav-link" (click)="closeMobileMenu()">Características</a>
-      <a href="#comunidad-en-vivo" class="mobile-nav-link" (click)="closeMobileMenu()">Comunidad en Vivo</a>
-      <a href="#masterclasses" class="mobile-nav-link" (click)="closeMobileMenu()">Masterclasses</a>
-      <a href="#membresias" class="mobile-nav-link" (click)="closeMobileMenu()">Membresías</a>
-      <a href="#faq" class="mobile-nav-link" (click)="closeMobileMenu()">Preguntas Frecuentes</a>
-      <div class="mobile-actions">
-        <a href="#unete" class="btn btn-gold w-full" (click)="closeMobileMenu()">Entrar al Club</a>
-      </div>
+  <div class="mobile-menu-backdrop" (click)="closeMobileMenu()"></div>
+  <div class="mobile-menu-content animate-fade-in">
+    <a href="#experiencia" class="mobile-nav-link" (click)="closeMobileMenu()">¿Quiénes somos?</a>
+    <a href="#features" class="mobile-nav-link" (click)="closeMobileMenu()">Events</a>
+    <div class="mobile-actions">
+      <a href="#unete" class="btn btn-gold w-full" (click)="closeMobileMenu()">Entrar al Club</a>
     </div>
+  </div>
   }
 </header>

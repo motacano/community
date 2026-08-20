@@ -18,11 +18,15 @@ interface AudioPreset {
 })
 export class AudioPlayerComponent implements AfterViewInit, OnDestroy {
   @ViewChild('visualizerCanvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('trackAudio', { static: false }) trackAudioRef!: ElementRef<HTMLAudioElement>;
 
   isPlaying = signal(false);
+  isTrackPlaying = signal(false);
+  isTrackMuted = signal(false);
   currentPreset = signal<PresetId>('melodic');
   bpm = signal(126);
   filterCutoff = signal(2400);
+  trackSrc = 'assets/media/Fraktal - Topic - The Promised Land (Progressive Live In Brandenburg)_cut_00-47_01-45.mp3';
 
   // Stems Mute State
   kickEnabled = signal(true);
@@ -46,13 +50,36 @@ export class AudioPlayerComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.initCanvasPlaceholder();
+    this.initTrackAutoplay();
   }
 
   ngOnDestroy() {
     this.stopPlayback();
+    this.stopTrackPlayback();
     if (this.audioCtx && this.audioCtx.state !== 'closed') {
       this.audioCtx.close();
     }
+  }
+
+  toggleTrackMute() {
+    const audio = this.trackAudioRef?.nativeElement;
+    if (!audio) return;
+
+    const nextMutedState = !audio.muted;
+    audio.muted = nextMutedState;
+    this.isTrackMuted.set(nextMutedState);
+  }
+
+  onTrackPlay() {
+    this.isTrackPlaying.set(true);
+  }
+
+  onTrackPause() {
+    this.isTrackPlaying.set(false);
+  }
+
+  onTrackEnded() {
+    this.isTrackPlaying.set(false);
   }
 
   private initAudio() {
@@ -77,6 +104,42 @@ export class AudioPlayerComponent implements AfterViewInit, OnDestroy {
     if (this.audioCtx.state === 'suspended') {
       this.audioCtx.resume();
     }
+  }
+
+  private async initTrackAutoplay() {
+    const audio = this.trackAudioRef?.nativeElement;
+    if (!audio) return;
+
+    audio.currentTime = 0;
+    audio.loop = true;
+
+    try {
+      audio.muted = false;
+      this.isTrackMuted.set(false);
+      await audio.play();
+      this.isTrackPlaying.set(true);
+      return;
+    } catch {
+      // Fallback for browsers that block autoplay with sound.
+    }
+
+    try {
+      audio.muted = true;
+      this.isTrackMuted.set(true);
+      await audio.play();
+      this.isTrackPlaying.set(true);
+    } catch {
+      this.isTrackPlaying.set(false);
+    }
+  }
+
+  private stopTrackPlayback() {
+    const audio = this.trackAudioRef?.nativeElement;
+    if (!audio) return;
+
+    audio.pause();
+    audio.currentTime = 0;
+    this.isTrackPlaying.set(false);
   }
 
   togglePlay() {

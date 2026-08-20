@@ -3,6 +3,41 @@
   position: relative;
 }
 
+.floating-sound-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(234, 179, 8, 0.65);
+  background: rgba(12, 15, 22, 0.9);
+  color: var(--gold-300);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), 0 0 18px rgba(234, 179, 8, 0.35);
+  backdrop-filter: blur(4px);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px) scale(1.04);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 24px rgba(234, 179, 8, 0.45);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--gold-400);
+    outline-offset: 2px;
+  }
+
+  &.muted {
+    border-color: rgba(239, 68, 68, 0.6);
+    color: #fca5a5;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), 0 0 18px rgba(239, 68, 68, 0.3);
+  }
+}
+
 .text-center {
   text-align: center;
 }

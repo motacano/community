@@ -1,8 +1,8 @@
-<section id="community-event" class="placeholder-section">
+<section id="community-events" class="placeholder-section">
   <div class="container">
     <div class="section-header text-center">
       <div class="badge-pill">
-        <span>🎙️ COMMUNITY EVENT</span>
+        <span>🎙️ COMMUNITY EVENTS</span>
       </div>
       <h2 class="section-title">
         LOS <span class="text-gold-gradient">EVENTOS DE COMMUNITY</span>
@@ -11,8 +11,35 @@
         Encuentros, showcases y directos organizados por y para la comunidad.
       </p>
     </div>
-    <div class="glass-card placeholder-card">
-      <p>Sección en construcción — próximamente: calendario de eventos y cómo apuntarte.</p>
+
+    <div class="event-card glass-card">
+      <div class="event-date">
+        <span class="event-weekday">{{ event.weekday }}</span>
+        <span class="event-day">{{ event.day }}</span>
+        <span class="event-month">{{ event.month }}</span>
+      </div>
+
+      <div class="event-body">
+        <div class="badge-pill badge-purple event-venue-badge">
+          <span>📍 {{ event.venue }} · {{ event.address }}</span>
+        </div>
+
+        <h3 class="event-title">{{ event.title }}</h3>
+
+        <div class="event-meta">
+          <span class="event-meta-item">🕒 {{ event.time }}</span>
+          <span class="event-meta-item">🎟️ {{ event.entry }}</span>
+          <span class="event-meta-item">💺 {{ event.reserved }}</span>
+        </div>
+
+        <div class="event-lineup">
+          @for (dj of event.lineup; track dj) {
+            <span class="lineup-chip">{{ dj }}</span>
+          }
+        </div>
+
+        <a href="#contacto" class="btn btn-gold event-cta">Reservar mesa</a>
+      </div>
     </div>
   </div>
 </section>

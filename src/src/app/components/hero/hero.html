@@ -103,6 +103,22 @@
       -->
     </div>
 
+    <!-- Featured Event Banner: próximo evento destacado -->
+    <a href="#community-events" class="featured-event-banner glass-card">
+      <div class="featured-event-flyer">
+        <img [src]="featuredEvent.flyer" [alt]="featuredEvent.title + ' — ' + featuredEvent.venue" loading="lazy">
+      </div>
+      <div class="featured-event-info">
+        <span class="badge-pill badge-purple">
+          <span class="pulse-dot"></span>
+          <span>🔥 PRÓXIMO EVENTO</span>
+        </span>
+        <span class="featured-event-title">{{ featuredEvent.title }}</span>
+        <span class="featured-event-meta">📍 {{ featuredEvent.venue }} · {{ featuredEvent.date }}</span>
+      </div>
+      <span class="featured-event-cta btn btn-gold">Ver evento</span>
+    </a>
+
     <!-- Trust & Social Proof Bar -->
     <div class="hero-social-proof">
       <div class="proof-item">

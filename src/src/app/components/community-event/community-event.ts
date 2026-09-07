@@ -12,6 +12,7 @@ interface EventDetails {
   entry: string;
   reserved: string;
   lineup: string[];
+  flyer: string;
 }
 
 @Component({
@@ -40,6 +41,7 @@ export class CommunityEventComponent {
       'SRP',
       'Mikev3rink',
       'DJ Sophie.B'
-    ]
+    ],
+    flyer: 'assets/images/dlocos-flyer.jpg'
   };
 }

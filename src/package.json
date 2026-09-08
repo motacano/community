@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "generate:gallery": "node ../scripts/generate-gallery-manifest.mjs",
+    "prestart": "npm run generate:gallery",
     "start": "ng serve",
+    "prebuild": "npm run generate:gallery",
     "build": "ng build",
-    "build:ghpages": "ng build --base-href /community/",
+    "build:ghpages": "npm run generate:gallery && ng build --base-href /community/",
     "deploy": "npm run build:ghpages && npx angular-cli-ghpages --dir=dist/community-app/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

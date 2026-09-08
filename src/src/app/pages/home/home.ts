@@ -9,6 +9,7 @@ import { FaqComponent } from '../../components/faq/faq';
 import { FooterComponent } from '../../components/footer/footer';
 import { CommunitySocialComponent } from '../../components/community-social/community-social';
 import { CommunityEventComponent } from '../../components/community-event/community-event';
+import { EventGalleryComponent } from '../../components/event-gallery/event-gallery';
 import { EscuelaComponent } from '../../components/escuela/escuela';
 import { ContactoComponent } from '../../components/contacto/contacto';
 
@@ -20,6 +21,7 @@ import { ContactoComponent } from '../../components/contacto/contacto';
     HeroComponent,
     CommunitySocialComponent,
     CommunityEventComponent,
+    EventGalleryComponent,
     EscuelaComponent,
     AudioPlayerComponent,
     FeaturesComponent,

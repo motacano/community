@@ -1,0 +1,57 @@
+<section id="event-gallery" class="placeholder-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="badge-pill">
+        <span>📸 GALERÍA</span>
+      </div>
+      <h2 class="section-title">
+        FOTOS DEL <span class="text-gold-gradient">ÚLTIMO EVENTO</span>
+      </h2>
+      <p class="section-subtitle">
+        {{ title }} — revive los mejores momentos.
+      </p>
+    </div>
+
+    @if (loading()) {
+      <div class="gallery-placeholder glass-card">
+        <p>Cargando fotos…</p>
+      </div>
+    } @else if (photos().length === 0) {
+      <div class="gallery-placeholder glass-card">
+        <p>Todavía no hay fotos en esta galería.</p>
+      </div>
+    } @else {
+      <div class="gallery-carousel glass-card">
+        <button type="button" class="gallery-arrow gallery-arrow-prev" (click)="prev()" aria-label="Foto anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="gallery-viewport">
+          <img [src]="currentPhoto()" [alt]="title + ' — foto ' + (currentIndex() + 1)" loading="lazy">
+          <span class="gallery-counter">{{ currentIndex() + 1 }} / {{ photos().length }}</span>
+        </div>
+
+        <button type="button" class="gallery-arrow gallery-arrow-next" (click)="next()" aria-label="Foto siguiente">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="gallery-thumbnails">
+        @for (photo of photos(); track photo; let i = $index) {
+          <button
+            type="button"
+            class="gallery-thumb"
+            [class.active]="i === currentIndex()"
+            (click)="goTo(i)"
+            [attr.aria-label]="'Ir a foto ' + (i + 1)">
+            <img [src]="photo" [alt]="'Miniatura ' + (i + 1)" loading="lazy">
+          </button>
+        }
+      </div>
+    }
+  </div>
+</section>

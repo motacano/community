@@ -49,8 +49,9 @@ if (-not (Test-Path -LiteralPath $Mp3Path)) {
 }
 $Mp3Path = (Resolve-Path -LiteralPath $Mp3Path).Path
 
-# Reutilizamos Find-DiscogsRelease definido en discog-Find-Song.ps1.
-. (Join-Path $PSScriptRoot 'discog-Find-Song.ps1') -ApiKey $ApiKey -Title 'placeholder' -Artista 'placeholder' *> $null
+# Reutilizamos Find-DiscogsRelease desde DiscogsApi.ps1 (sin param() propio,
+# así el dot-source no pisa las variables $Title/$Mp3Path de este script).
+. (Join-Path $PSScriptRoot 'DiscogsApi.ps1')
 
 if (-not $Title) {
     $Title = [System.IO.Path]::GetFileNameWithoutExtension($Mp3Path)
